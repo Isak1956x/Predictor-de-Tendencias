@@ -1,0 +1,42 @@
+﻿@model EntradaListViewModel
+@{
+    ViewData["Title"] = "Predictor de Tendencias";
+}
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.message))
+{
+	<div class="alert @ViewBag.MessageType alert-dismissible fade show" role="alert">
+		@ViewBag.Message
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+}
+<h1>@ViewBag.Modo</h1>
+<div class="text-center">
+	<div class="container d-flex justify-content-center">
+		<div class="card col-12 col-md-10 col-lg-8 m-4">
+			<div class="card-header bg-danger text-light">
+				<h5>Registro del Valor del Activo</h5>
+			</div>
+			<form asp-action="Calcular" asp-controller="Predictor" method="post" class="p-4">
+				@for (int i = 0; i < 20; i++)
+				{
+					<div class="row mb-3 justify-content-center">
+						<div class="col-md-5 mb-2">
+							<label class="form-label">Fecha @(i + 1)</label>
+							<input asp-for="EntradaList[i].Fecha" type="date" class="form-control"  value="@DateTime.Now.AddDays(-i).ToString("yyyy-MM-dd")" readonly>
+						</div>
+						<div class="col-md-5 mb-2">
+							<label  class="form-label">Valor @(i + 1)</label>
+							<input asp-for="EntradaList[i].Valor" type="number" class="form-control" />
+							<span asp-validation-for="EntradaList[i].Valor" class="text-danger"></span>
+						</div>
+					</div>
+				}
+				<div class="text-center mt-4">
+					<button class="btn btn-outline-primary">Calcular Predicción</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+

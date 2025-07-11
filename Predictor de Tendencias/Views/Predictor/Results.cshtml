@@ -1,0 +1,40 @@
+﻿@using Application.ViewModels;
+@model PrediccionResultado
+
+@{
+    ViewData["Title"] = "Resultados";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <div class="card shadow rounded-4">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">📈 Resultados de la Predicción</h4>
+                </div>
+
+                <div class="card-body p-4">
+                    <div class="mb-3">
+                        <h5><span class="text-secondary">Modo seleccionado:</span> <strong class="text-dark">@ViewBag.ModoActual</strong></h5>
+                    </div>
+
+                    <div class="mb-3">
+                        <h5><strong class="text-success">Tendencia:</strong> @Model.Tipo</h5>
+                    </div>
+
+                    <div class="mb-2">
+                        <h6 class="text-muted">Detalle:</h6>
+                        <div class="bg-light p-3 rounded border" style="white-space: pre-line;">
+                            @Html.Raw(Model.Detalle)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer text-end">
+                    <a href="@Url.Action("Index", "Predictor")" class="btn btn-outline-secondary me-2">🔙 Volver</a>
+                    <a href="@Url.Action("Modos", "Modos")" class="btn btn-outline-primary">⚙️ Cambiar Modo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

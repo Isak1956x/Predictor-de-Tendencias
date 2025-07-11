@@ -1,0 +1,46 @@
+﻿@using Application.ENUM
+@model ModoPrediccionViewModel
+@{
+	ViewData["Title"] = "Modos";
+}
+<div class="text-center">
+	<div class="container d-flex justify-content-center">
+		<div class="card col-12 col-md-10 col-lg-8 m-4">
+			<div class="card-header bg-danger text-light">
+				<h5>Modos</h5>
+			</div>
+			<form asp-controller="Modos" asp-action="Modos"  method="post" class="p-4">
+				<select asp-for="ModoActual" class="form-select mb-3" name="modo" required>
+					@switch (Model.ModoActual)
+					{
+						case ModoPrediccionENUM.SMA:
+							<option value="1" selected>Media Movil Simple (SMA)</option>
+							<option value="2">Regresion Lineal</option>
+							<option value="3">Momentum (ROC)</option>
+							break;
+						case ModoPrediccionENUM.RegresionLineal:
+							<option value="2" selected>Regresion Lineal</option>
+							<option value="1">Media Movil Simple (SMA)</option>
+							<option value="3">Momentum (ROC)</option>
+							break;
+						case ModoPrediccionENUM.Momentum:
+							<option value="3" selected>Momentum (ROC)</option>
+							<option value="1">Media Movil Simple (SMA)</option>
+							<option value="2">Regresion Lineal</option>
+							break;
+						default:
+							<option value="1" selected>Media Movil Simple (SMA)</option>
+							<option value="2">Regresion Lineal</option>
+							<option value="3">Momentum (ROC)</option>
+							break;
+					})
+					</select>
+				<div class="text-center mt-4">
+					<button class="btn btn-outline-primary">Guardar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
